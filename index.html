@@ -3,31 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#e9ddc3">
+  <meta name="theme-color" content="#eee3cc">
   <title>Reference ID</title>
   <style>
-    :root { --ink:#3d3628; --muted:#756d5f; --paper:#e9ddc3; --sheet:#fbf6e9; --line:#d9cdb4; --accent:#54704b; --accent-dark:#3d5b38; --soft:#edf1e2; }
+    :root { --ink:#201d17; --faded-ink:rgba(32,29,23,.62); --paper:#eee3cc; --grid:rgba(32,29,23,.15); }
     * { box-sizing:border-box; }
-    body { min-height:100vh; margin:0; padding:clamp(16px, 4vw, 42px); background:var(--paper); color:var(--ink); font:18px/1.5 Georgia, "Times New Roman", serif; }
-    main { width:min(780px, 100%); margin:auto; }
-    .page { position:relative; overflow:hidden; background:repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(105,137,152,.13) 34px, transparent 35px), var(--sheet); border:1px solid var(--line); border-radius:3px; box-shadow:0 18px 48px rgba(83,65,38,.18); }
-    .page::before { position:absolute; z-index:1; top:0; bottom:0; left:clamp(38px, 10vw, 76px); width:1px; background:rgba(181,105,91,.28); content:""; pointer-events:none; }
-    .card { position:relative; z-index:2; padding:clamp(42px, 9vw, 72px) clamp(32px, 9vw, 100px) 40px; text-align:center; }
-    h1, .intro, button, #status { font-family:"Bradley Hand", "Noteworthy", "Segoe Print", "Comic Sans MS", cursive; }
-    h1 { margin:0 0 5px; color:#4c5c3e; font-size:clamp(1.55rem, 5vw, 2.35rem); font-weight:700; letter-spacing:.01em; }
-    .intro { margin:0 0 36px; color:var(--muted); font-size:1.05rem; }
-    #id { margin:0 0 30px; color:var(--accent-dark); font:700 clamp(2.8rem, 12vw, 5.1rem)/1 "Courier New", ui-monospace, monospace; letter-spacing:.04em; text-shadow:1px 1px 0 rgba(255,255,255,.55); user-select:all; }
-    .actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    button { min-height:52px; cursor:pointer; border-radius:3px; padding:11px 16px; font-size:1.05rem; font-weight:750; }
-    #copy { color:#fffef7; background:var(--accent); border:1px solid var(--accent); box-shadow:1px 2px 0 rgba(61,91,56,.22); }
-    #copy:hover { background:var(--accent-dark); }
-    #new { color:var(--accent-dark); background:rgba(255,253,245,.45); border:1px solid #9aae8c; }
-    #new:hover { background:var(--soft); }
-    button:focus-visible { outline:3px solid #8bd5b2; outline-offset:3px; }
-    #status { min-height:1.5em; margin:19px 0 0; color:var(--muted); font-size:.94rem; }
-    figure { position:relative; z-index:2; margin:0; border-top:1px solid rgba(123,109,84,.23); background:#d8d5b8; }
-    figure img { display:block; width:100%; height:auto; aspect-ratio:3 / 1; object-fit:cover; object-position:center; mix-blend-mode:multiply; }
-    @media (max-width:380px) { .actions { grid-template-columns:1fr; } }
+    body { min-height:100vh; margin:0; background:var(--paper); color:var(--ink); font:18px/1.5 Georgia, "Times New Roman", serif; }
+    main { width:min(840px, 100%); min-height:100vh; margin:auto; }
+    .page { position:relative; min-height:100vh; overflow:hidden; background-color:var(--paper); background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size:28px 28px; }
+    .page::before { position:absolute; top:0; bottom:0; left:clamp(28px, 7vw, 58px); width:1px; background:rgba(32,29,23,.28); content:""; pointer-events:none; }
+    .card { position:relative; z-index:1; padding:clamp(58px, 11vw, 96px) clamp(44px, 12vw, 128px) 26px; text-align:center; }
+    h1, .intro, button, #status, .note { font-family:"Bradley Hand", "Noteworthy", "Segoe Print", "Comic Sans MS", cursive; }
+    h1 { margin:0 0 3px; font-size:clamp(1.6rem, 5vw, 2.45rem); font-weight:700; letter-spacing:.01em; }
+    .intro { margin:0 0 42px; color:var(--faded-ink); font-size:1.05rem; }
+    #id { margin:0 0 36px; font:700 clamp(2.7rem, 12vw, 5.2rem)/1 "Courier New", ui-monospace, monospace; letter-spacing:.04em; user-select:all; }
+    .actions { display:flex; align-items:center; justify-content:center; gap:22px; }
+    button { min-height:42px; cursor:pointer; border:0; padding:7px 2px; color:var(--ink); background:transparent; font-size:1.05rem; font-weight:750; }
+    #copy { padding-inline:13px; border:1.5px solid var(--ink); box-shadow:2px 2px 0 var(--ink); }
+    #copy:hover { transform:translate(1px, 1px); box-shadow:1px 1px 0 var(--ink); }
+    #new { border-bottom:1.5px solid currentColor; }
+    #new:hover { font-style:italic; }
+    button:focus-visible { outline:2px solid var(--ink); outline-offset:5px; }
+    #status { min-height:1.5em; margin:19px 0 0; color:var(--faded-ink); font-size:.94rem; }
+    figure { position:relative; z-index:1; width:min(620px, 100%); margin:20px auto 0; padding:0 22px 8px; }
+    .note { margin:0 0 2px; color:var(--faded-ink); font-size:.9rem; text-align:right; transform:rotate(-2deg); }
+    .scene { display:block; width:100%; height:auto; mix-blend-mode:multiply; }
+    @media (max-width:440px) { .card { padding-inline:36px; } .actions { gap:16px; } }
   </style>
 </head>
 <body>
@@ -43,7 +44,10 @@
         </div>
         <p id="status" aria-live="polite"></p>
       </div>
-      <figure><img src="countryside.png" alt="A quiet countryside cottage among meadows and hills."></figure>
+      <figure>
+        <p class="note">keep this somewhere safe</p>
+        <img class="scene" src="countryside-pencil.png" alt="A graphite sketch of a grand oak tree, a small barn, a fence, and open countryside.">
+      </figure>
     </section>
   </main>
   <script>
