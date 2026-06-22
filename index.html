@@ -3,42 +3,48 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f2e9">
+  <meta name="theme-color" content="#e9ddc3">
   <title>Reference ID</title>
   <style>
-    :root { --ink:#20251f; --muted:#697269; --paper:#f6f2e9; --card:#fffdf8; --line:#deded4; --accent:#176747; --accent-dark:#0d5135; --soft:#dff1e7; }
+    :root { --ink:#3d3628; --muted:#756d5f; --paper:#e9ddc3; --sheet:#fbf6e9; --line:#d9cdb4; --accent:#54704b; --accent-dark:#3d5b38; --soft:#edf1e2; }
     * { box-sizing:border-box; }
-    body { min-height:100vh; margin:0; display:grid; place-items:center; padding:24px; background:var(--paper); color:var(--ink); font:16px/1.45 ui-rounded, "SF Pro Rounded", "Avenir Next", system-ui, sans-serif; }
-    main { width:min(520px, 100%); }
-    .card { padding:clamp(26px, 7vw, 46px); background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:0 18px 48px rgba(41,54,43,.09); text-align:center; }
-    h1 { margin:0 0 8px; font-size:1.12rem; font-weight:700; letter-spacing:.02em; }
-    .intro { margin:0 0 32px; color:var(--muted); }
-    #id { margin:0 0 28px; color:var(--accent-dark); font:700 clamp(3rem, 13vw, 5rem)/1 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing:.08em; user-select:all; }
+    body { min-height:100vh; margin:0; padding:clamp(16px, 4vw, 42px); background:var(--paper); color:var(--ink); font:18px/1.5 Georgia, "Times New Roman", serif; }
+    main { width:min(780px, 100%); margin:auto; }
+    .page { position:relative; overflow:hidden; background:repeating-linear-gradient(to bottom, transparent 0, transparent 33px, rgba(105,137,152,.13) 34px, transparent 35px), var(--sheet); border:1px solid var(--line); border-radius:3px; box-shadow:0 18px 48px rgba(83,65,38,.18); }
+    .page::before { position:absolute; z-index:1; top:0; bottom:0; left:clamp(38px, 10vw, 76px); width:1px; background:rgba(181,105,91,.28); content:""; pointer-events:none; }
+    .card { position:relative; z-index:2; padding:clamp(42px, 9vw, 72px) clamp(32px, 9vw, 100px) 40px; text-align:center; }
+    h1, .intro, button, #status { font-family:"Bradley Hand", "Noteworthy", "Segoe Print", "Comic Sans MS", cursive; }
+    h1 { margin:0 0 5px; color:#4c5c3e; font-size:clamp(1.55rem, 5vw, 2.35rem); font-weight:700; letter-spacing:.01em; }
+    .intro { margin:0 0 36px; color:var(--muted); font-size:1.05rem; }
+    #id { margin:0 0 30px; color:var(--accent-dark); font:700 clamp(2.8rem, 12vw, 5.1rem)/1 "Courier New", ui-monospace, monospace; letter-spacing:.04em; text-shadow:1px 1px 0 rgba(255,255,255,.55); user-select:all; }
     .actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    button { min-height:50px; cursor:pointer; border-radius:11px; padding:12px 16px; font:inherit; font-weight:750; }
-    #copy { color:#fff; background:var(--accent); border:1px solid var(--accent); }
+    button { min-height:52px; cursor:pointer; border-radius:3px; padding:11px 16px; font-size:1.05rem; font-weight:750; }
+    #copy { color:#fffef7; background:var(--accent); border:1px solid var(--accent); box-shadow:1px 2px 0 rgba(61,91,56,.22); }
     #copy:hover { background:var(--accent-dark); }
-    #new { color:var(--accent-dark); background:transparent; border:1px solid #9bb7a8; }
+    #new { color:var(--accent-dark); background:rgba(255,253,245,.45); border:1px solid #9aae8c; }
     #new:hover { background:var(--soft); }
     button:focus-visible { outline:3px solid #8bd5b2; outline-offset:3px; }
-    #status { min-height:1.5em; margin:18px 0 0; color:var(--muted); font-size:.9rem; }
-    footer { margin-top:18px; color:var(--muted); font-size:.78rem; text-align:center; }
+    #status { min-height:1.5em; margin:19px 0 0; color:var(--muted); font-size:.94rem; }
+    figure { position:relative; z-index:2; margin:0; border-top:1px solid rgba(123,109,84,.23); background:#d8d5b8; }
+    figure img { display:block; width:100%; height:auto; aspect-ratio:3 / 1; object-fit:cover; object-position:center; mix-blend-mode:multiply; }
     @media (max-width:380px) { .actions { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
   <main>
-    <section class="card" aria-labelledby="heading">
-      <h1 id="heading">New reference ID</h1>
-      <p class="intro">Six handwritten-friendly characters.</p>
-      <output id="id" aria-live="polite" aria-label="Generated reference ID"></output>
-      <div class="actions">
-        <button id="copy" type="button">Copy ID</button>
-        <button id="new" type="button">New ID</button>
+    <section class="page" aria-labelledby="heading">
+      <div class="card">
+        <h1 id="heading">A little reference</h1>
+        <p class="intro">For a thing you would like to find again.</p>
+        <output id="id" aria-live="polite" aria-label="Generated reference ID"></output>
+        <div class="actions">
+          <button id="copy" type="button">Copy ID</button>
+          <button id="new" type="button">New ID</button>
+        </div>
+        <p id="status" aria-live="polite"></p>
       </div>
-      <p id="status" aria-live="polite"></p>
+      <figure><img src="countryside.png" alt="A quiet countryside cottage among meadows and hills."></figure>
     </section>
-    <footer>0–9 and A–Z, excluding I, L, O, and U.</footer>
   </main>
   <script>
     const alphabet = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
@@ -52,7 +58,7 @@
       crypto.getRandomValues(bytes);
       const id = Array.from(bytes, byte => alphabet[byte & 31]).join("");
       idOutput.value = id;
-      idOutput.textContent = id;
+      idOutput.textContent = id.slice(0, 3) + "-" + id.slice(3);
       status.textContent = "";
       copyButton.textContent = "Copy ID";
     }
